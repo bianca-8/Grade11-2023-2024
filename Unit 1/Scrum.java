@@ -29,6 +29,9 @@ public class Scrum extends Canvas {
 		this.setBackground(Color.BLACK);
 		Random r = new Random();
 		
+		Background bg = new Background();
+		bg.background(g, 500,250,100,125,1.0);
+		
 		Stem stem = new Stem();
 		stem.stem(230,40,200,200,0.4,new Color(130,50,0),7,Color.BLACK,g);
 
@@ -39,14 +42,15 @@ public class Scrum extends Canvas {
 		@SuppressWarnings("unused")
 		Mouth mouth = new Mouth(125,220,125,25,g);
 		
-		Background bg = new Background();
-		bg.background(g, 500,250,100,125,1.0);
-		
 		Eye eye1 = new Eye(120,150,80,80,8,0.6,new Color(255,165,0),new Color(50,50,50),g);
 		Eye eye2 = new Eye(200,150,80,80,8,0.6,new Color(255,165,0),new Color(50,50,50),g);
 
 		eye1.changeColor(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)),new Color(50,50,50));
 		eye2.changeColor(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)),new Color(50,50,50));
+		
+		Arms arms = new Arms();
+		arms.drawArm(g, 0, 90, 300);
+		arms.drawArm(g, 1, 280, 300);
 	}
 	
 	//public void paint(Graphics g) {	

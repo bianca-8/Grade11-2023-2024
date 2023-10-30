@@ -11,6 +11,10 @@ import java.awt.Graphics;
 import java.util.Random;
 
 public class Background {
+
+	int R = 118;
+	int G = 85;
+	int B = 43;
 	
 	Color DARKBLUE = new Color(62, 62, 87);
 	Color LIGHTBLUE = new Color(101, 101, 132);
@@ -19,20 +23,47 @@ public class Background {
 	Color DARK = new Color(39, 39, 38);
 	Color DOOR = new Color(55, 55, 87);
 	Color BROWN = new Color(69, 61, 39);
+	Color DIRT = new Color(R,G,B);
 
 	public void background(Graphics g, int x, int y, int l, int w, double factor) {
 		Random r = new Random();
-		
+
 		l = (int) (l * factor);
 		w = (int) (w * factor);
+		int Y = y+50; // Y of dirt ground box
 		
+		g.setColor(DIRT);
+		g.fillRect(0, y+50, 800, y+50); // dirt ground
+		
+		// dirt ground change color to black
+		for (int j = 0; j <= y-200; j++) {
+			g.setColor(new Color(R,G,B));
+			g.drawLine(0, Y, 800, Y);
+
+			R -= 2;
+			G -= 2;
+			B -= 2;
+			Y -= 1;
+
+			if (R <= 0) {
+				R = 0;
+			}
+			if (G <= 0) {
+				G = 0;
+			}
+			if (B <= 0) {
+				B = 0;
+			}
+		}
+
+		// Castle
 		path(g, x-50, y+50, l+200, w+75); //450, 300, 300, 200
 		sideTower(g, x-100, y, l, w, r.nextInt(2)); // 400, 250, 100, 125
 		sideTower(g, x+100, y, l, w, r.nextInt(2)); // 600, 250, 100, 125
 		middleTower(g, x, y, l, w + 5, r.nextInt(2)); // 500, 250, 100, 130
-		
+
 	}
-	
+
 	/**
 	 * Method that draws the middle tower
 	 * @param g - Graphics
@@ -50,20 +81,20 @@ public class Background {
 		g.fillRect(x, y-100, l, w-30); // top tower x, 150, 100, 100
 		g.setColor(DARKBLUE);
 		tri(g, x-25, y-200, l, w+20); // top roof 475, 50, 100, 150
-		
+
 		window(g, x+30, y-75, l-60, w-85, 3, color); // attic window
-		
+
 		// Door
 		g.setColor(DOOR);
 		g.fillRect(x+25, y+50, l-50, w-55); // Door 525, 300, 50, 75
 		g.setColor(DARKBLUE);
 		g.fillRect(x+25, y+125, l-50, w-120); // doorstep 525, 375, 50, 10
-		
+
 		g.setColor(new Color(121, 121, 173));
 		g.drawLine(x+25, y+125, l+475, w+245); // bottom door line 525, 375, 575, 375
 		g.drawLine(x+25, y+50, l+475, w+170); // top door line 525, 300, 575, 300
 		g.fillOval(x+66, y+85, 7, 7); // doorknob 566, 335, 7, 7
-		
+
 		for (int i = 0; i <= 5; i++) { // Door lines
 			g.drawLine(x+25+10*i, y+50, x+25+10*i, y+125); // Door 525+10*i, 300, 525+10*i, 375
 		}
@@ -90,11 +121,11 @@ public class Background {
 		g.fillRect(x, y, l, w); // bottom tower 400, 250, 100, 125
 		g.setColor(DARKBLUE);
 		tri(g, x-20, y-60, l-25, w+15); //380, 190, 75, 140
-		
+
 		window(g, x+28, y+45, l-55, w-75, 3, color); //428, 295, 45, 50
-		
+
 	}
-	
+
 	/**
 	 * Method that draws a path from the door of the castle
 	 * @param g - Graphics
@@ -107,7 +138,7 @@ public class Background {
 		g.setColor(BROWN);
 		tri(g, x, y, l, w);
 	}
-	
+
 	/**
 	 * Method that draws a triangle
 	 * @param g - Graphics
@@ -121,7 +152,7 @@ public class Background {
 		int[]Y = {y+l, y, y+l};
 		g.fillPolygon(X, Y, 3);
 	}
-	
+
 	/**
 	 * Method that draws a window
 	 * @param g - Graphics
