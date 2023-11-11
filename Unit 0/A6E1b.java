@@ -30,27 +30,36 @@ public class A6E1b {
 			while (input.hasNextLine()) {
 				// Length of Sentences
 				line = input.nextLine();
+				// Characters in line
 				for (int i = 0; i < line.length(); i++) {
+					// number of punctuation
 					for (int j = 0; j < punctuation.length(); j++) {
-						// end of a sentence
+						// if letter is a punctuation symbol
 						if (line.substring(i,i+1).equals(punctuation.substring(j,j+1))) {
 							sentence = line.substring(0,i);
-							line = line.substring(i);
+							line = line.substring(i+1);
+							counter++;
+							for (int k = 0; k < sentence.length(); k++) {
+								System.out.println(sentence.substring(k,k+1));
+								System.out.println(length);
+								if (sentence.substring(k,k+1).equals(" ") == true) {
+									length += 1;
+									
+								}
+							}
 							break;
 						}
+						// no punctuation - the line is the whole sentence
 						else {
-							sentence = line;
-						}
-						System.out.println(sentence);
-						for (int k = 0; k < sentence.length(); k++) {
-							if (sentence.substring(k,k+1).equals(" ") == true) {
-								length += 1;
-								System.out.print(length);
-								break;
+							for (int k = 0; k < line.length(); k++) {
+								if (line.substring(k,k+1).equals(" ") == true) {
+									length += 1;
+									break;
+								}
 							}
 						}
+						
 					}
-					counter++;
 				}
 			}
 		}
@@ -60,7 +69,8 @@ public class A6E1b {
 		}
 
 		// Math
-		avg = length/counter; // average number of words in a sentence
+		System.out.print(length);
+		avg = length/counter; // average number of words in a sentence - found by number of words in a sentence divided by number of sentences
 
 		// Print
 		System.out.format("The average sentence length is %.0f.", avg);
