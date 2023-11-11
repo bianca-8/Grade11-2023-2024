@@ -1,4 +1,4 @@
-package unit_1_introOOP;
+package unit_1_OOP;
 
 /**
  * Program that draws a halloween haunted castle.
@@ -45,6 +45,7 @@ public class Background {
 			B -= 2;
 			Y -= 1;
 
+			// invalid color
 			if (R <= 0) {
 				R = 0;
 			}
@@ -95,6 +96,7 @@ public class Background {
 		g.drawLine(x+25, y+50, l+475, w+170); // top door line 525, 300, 575, 300
 		g.fillOval(x+66, y+85, 7, 7); // doorknob 566, 335, 7, 7
 
+		// Draw lines on door
 		for (int i = 0; i <= 5; i++) { // Door lines
 			g.drawLine(x+25+10*i, y+50, x+25+10*i, y+125); // Door 525+10*i, 300, 525+10*i, 375
 		}
@@ -165,9 +167,11 @@ public class Background {
 	public void window(Graphics g, int x, int y, int l, int w, int b, int color) {
 		g.setColor(DARK);
 		g.fillRect(x - b, y - b, l + b * 2, w + b * 2); // window outline
+		// choice 1 - color orange
 		if (color == 1) {
 			g.setColor(ORANGE);
 		}
+		// choice 2 - color yellow
 		else {
 			g.setColor(new Color(255, 187, 0)); // Yellow
 		}

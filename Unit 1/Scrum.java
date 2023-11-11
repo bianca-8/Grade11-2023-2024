@@ -1,4 +1,4 @@
-package unit_1_introOOP;
+package unit_1_OOP;
 
 /**
  * Program that draws a pumpkin robot.
@@ -36,6 +36,7 @@ public class Scrum extends Canvas {
 		stem.stem(230,40,200,200,0.4,new Color(130,50,0),7,Color.BLACK,g);
 
 		Pumpkin pumpkin = new Pumpkin();
+		
 		pumpkin.pumpkin(g, 70, 270, 200, 300, 0.7); // body
 		pumpkin.pumpkin(g, 85, 100, 200, 300, 0.6); // head
 		
@@ -52,39 +53,4 @@ public class Scrum extends Canvas {
 		arms.drawArm(g, 0, 90, 300);
 		arms.drawArm(g, 1, 280, 300);
 	}
-	
-	//public void paint(Graphics g) {	
-		// EYES MOVE
-		/*int x = 8;
-		for (int i = 0; i <= 20; i++) {
-			try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			Stem stem = new Stem();
-			stem.stem(230,40,200,200,0.4,new Color(130,50,0),7,new Color(238,238,238),g);
-
-			Pumpkin pumpkin = new Pumpkin();
-			pumpkin.pumpkin(g, 70, 270, 200, 300, 0.7); // body
-			pumpkin.pumpkin(g, 85, 100, 200, 300, 0.6); // head
-			
-			Mouth mouth = new Mouth();
-			mouth.mouth(g, 10, 10, 40, 10, 1.0);
-			
-			Eye eye5 = new Eye(120,150,80,80,x,0.6,new Color(255,165,0),new Color(50,50,50),g);
-			Eye eye6 = new Eye(200,150,80,80,x,0.6,new Color(255,165,0),new Color(50,50,50),g);
-			
-			if (i < 10) {
-				x += 2;
-			}
-			if (i >= 10) {
-				x -= 2;
-			}
-			
-		}*/
-	//}
-	
-
 }

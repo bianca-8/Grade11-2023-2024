@@ -1,4 +1,4 @@
-package unit_1_introOOP;
+package unit_1_OOP;
 import java.awt.*;
 /**This program contains various methods that are responsible for creating a drawing of a robot arm.
  * @author Nyna Pinnamaraju

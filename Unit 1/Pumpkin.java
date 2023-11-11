@@ -1,4 +1,4 @@
-package unit_1_introOOP;
+package unit_1_OOP;
 
 /**
  * Program that draws a pumpkin.
@@ -50,7 +50,7 @@ public class Pumpkin {
 		g.fillArc(x-20,y,l+(l/2),w,95,-50);
 		g.fillArc(x+50,y,l+(l/2),w,90,50);
 		
-		// Shading
+		// Shading - dark to light orange
 		for (int i = 0; i < 40; i++) {
 			// Shading for middle lines
 			g.setColor(new Color(R, G, 70));
@@ -63,7 +63,8 @@ public class Pumpkin {
 			g.drawArc(X1+2*(l/3),y,l,w,250,200);
 			
 			G += 1;
-			if (G > 255 || G < 0 || G == 134) {
+			// Color is same color as rest of pumpkin/255/0
+			if (G >= 255 || G <= 0 || G == 134) {
 				break;
 			}
 			
@@ -71,14 +72,15 @@ public class Pumpkin {
 			X1 -= 1;
 		}
 		
-		// Highlight
+		// Highlight - shading for light 
 		for (int j = 0; j < 10; j++) {
 			g.setColor(new Color(255, G1, B));
 			g.drawArc((int)(X2+(100*scale)),y,l,w,65,-50);
 			X2 += 1;
 			G1 -= 10;
 			B -= 10;
-			if (G1 > 255 || G1 < 0 || G1 == 134) {
+			// Color is same color as rest of pumpkin/255/0
+			if (G1 >= 255 || G1 <= 0 || G1 == 134) {
 				break;
 			}
 		}
