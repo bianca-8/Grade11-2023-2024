@@ -1,4 +1,4 @@
-package unit_1_introOOP;
+package unit_1_OOP;
 
 import java.util.*;
 
@@ -23,30 +23,37 @@ public class A3E2 {
 		// Connect to actions
 		A3E2_Account action = new A3E2_Account(accountNum);
 		
+		// while user not entering -1
 		while (true) {
 			System.out.print("Enter an action (-1 to stop): ");
 			String word = input.next();
 			
+			// -1 entered, stop program
 			if (word.equals("-1")) {
 				break;
 			}
 			
+			// user wants to deposit
 			else if (word.equals("deposit")) {
 				System.out.print("Enter the deposit amount: ");
 				action.deposit(input.nextDouble());
 				System.out.format("Balance: $%.2f\n", action.getBalance());
 			}
+			// user wants to withdraw
 			else if (word.equals("withdraw")) {
 				System.out.print("Enter the withdraw amount: ");
 				action.withdraw(input.nextDouble());
 				System.out.format("Balance: $%.2f\n", action.getBalance());
 			}
+			// user wants to see balance
 			else if (word.equals("balance")) {
 				System.out.format("Balance: $%.2f\n", action.getBalance());
 			}
+			// user wants to see account number
 			else if (word.equals("account")) {
 				System.out.format("Account number: %d\n", action.getAccountNum());
 			}
+			// entered an invalid input
 			else {
 				System.out.println("Enter a valid action.");
 			}

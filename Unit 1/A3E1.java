@@ -1,4 +1,4 @@
-package unit_1_introOOP;
+package unit_1_OOP;
 
 import java.awt.*;
 import javax.swing.JFrame;
@@ -13,25 +13,24 @@ public class A3E1 extends Canvas {
 		frame.add(canvas);
 		frame.pack();
 		frame.setVisible(true);
-		
 	}
 	
 	/**
 	 * Draws red, yellow and green traffic lights.
 	 */
 	public void paint(Graphics g) {
-		A3E1_StopLight draw = new A3E1_StopLight();
+		A3E1_StopLight light1 = new A3E1_StopLight(0,0,g);
+		A3E1_StopLight light2 = new A3E1_StopLight(500,0,g);
+		A3E1_StopLight light3 = new A3E1_StopLight(250,0,g);
 		
 		this.setBackground(Color.WHITE);
 		
-		draw.stopLight(0,0,g);
-		draw.goGreen();
-		
-		draw.stopLight(500,0,g);
-		draw.goYellow();
-		
-		draw.stopLight(250,0,g);
-		draw.goRed();
+		// green light
+		light1.goGreen();
+		// yellow light
+		light2.goYellow();
+		// red light
+		light3.goRed();
 	}
 
 }

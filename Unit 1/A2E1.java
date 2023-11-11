@@ -1,4 +1,4 @@
-package unit_1_introOOP;
+package unit_1_OOP;
 
 import java.awt.*;
 import javax.swing.JFrame;
@@ -24,7 +24,7 @@ public class A2E1 extends Canvas {
 	
 	public void paint(Graphics g) {
 		this.setBackground(Color.WHITE);
-		
+
 		g.setColor(Color.YELLOW);
 		g.fillRect(50, 0, 200, 500);
 		

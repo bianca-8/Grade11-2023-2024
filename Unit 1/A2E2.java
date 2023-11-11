@@ -1,4 +1,4 @@
-package unit_1_introOOP;
+package unit_1_OOP;
 
 import java.awt.*;
 import javax.swing.JFrame;

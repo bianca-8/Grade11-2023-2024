@@ -1,4 +1,10 @@
-package unit_1_introOOP;
+package unit_1_OOP;
+
+/**
+ * Class that deposits, withdraws and gets balance of the account.
+ * @author Bianca
+ * @version Oct 20, 2023
+ */
 
 public class A3E2_Account {
 
@@ -11,8 +17,8 @@ public class A3E2_Account {
 	 * @param acctNum - account number of the user.
 	 */
 	public A3E2_Account(int acctNum) {
-		accountNum = acctNum;
-		balance = 0;
+		this.accountNum = acctNum;
+		this.balance = 0;
 	}
 	
 	/**
@@ -20,7 +26,14 @@ public class A3E2_Account {
 	 * @param amount - amount that is deposited by the user.
 	 */
 	public void deposit(double amount) {
-		balance += amount;
+		// not depositing negative
+		if (amount >= 0) {
+			this.balance += amount;
+		}
+		// depositing positive
+		else {
+			System.out.print("Invalid amount\n");
+		}
 	}
 	
 	/**
@@ -28,9 +41,11 @@ public class A3E2_Account {
 	 * @param amount - amount that is withdrawn by the user.
 	 */
 	public void withdraw(double amount) {
-		if (balance - amount >= 0) {
-			balance -= amount;
+		// amount to withdraw is greater than money in account
+		if (this.balance > amount && amount >= 0) {
+			this.balance -= amount;
 		}
+		// amount to withdraw is within money in account
 		else {
 			System.out.print("You do not have this much money to withdraw.\n");
 		}
