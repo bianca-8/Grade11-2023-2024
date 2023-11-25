@@ -2,17 +2,13 @@ package unit_2_Robots;
 
 import java.util.Random;
 
-import becker.robots.*;
+import becker.robots.City;
+import becker.robots.Direction;
+import becker.robots.Thing;
+import becker.robots.Wall;
 
-/**
- * Program that makes A1E3 with RobotVersion2
- * @author Bianca
- * @version Nov 2, 2023
- */
+public class A4E1 {
 
-public class A2E2 {
-
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		// variables
 		Wall [] [] walls = new Wall[4][5];

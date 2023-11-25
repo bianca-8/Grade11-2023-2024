@@ -10,6 +10,13 @@ import becker.robots.*;
 
 public class A3E2_BarRobot extends RobotVersion2 {
 
+	/**
+	 * Constructor method for the bar graph robot.
+	 * @param c - city the robot is in.
+	 * @param a - avenue the robot is on.
+	 * @param s - street the robot is on.
+	 * @param d - direction the robot is facing.
+	 */
 	public A3E2_BarRobot(City c, int a, int s, Direction d) {
 		super(c, a, s, d);
 	}
@@ -21,9 +28,9 @@ public class A3E2_BarRobot extends RobotVersion2 {
 		// there are more rows with Things on them
 		while (this.canPickThing()) {
 			this.pickAllThings();
+			int steps = steps();
 			this.go();
-			this.goBack(steps());
-			System.out.print(steps());
+			this.goBack(steps);
 			this.goDown();
 		}
 	}
@@ -31,7 +38,7 @@ public class A3E2_BarRobot extends RobotVersion2 {
 	/**
 	 * Make the robot move forward and drop Things.
 	 */
-	public void go() {
+	private void go() {
 		steps();
 		// there are still Things in backpack
 		while (this.countThingsInBackpack() > 0) {
@@ -47,7 +54,7 @@ public class A3E2_BarRobot extends RobotVersion2 {
 	 * Make the robot go back to the start of the row.
 	 * @param steps - number of steps the robot took
 	 */
-	public void goBack(int steps) {
+	private void goBack(int steps) {
 		this.turnAround();
 		this.move(steps);
 	}
@@ -57,7 +64,7 @@ public class A3E2_BarRobot extends RobotVersion2 {
 	 * pre: facing west
 	 * post: facing east
 	 */
-	public void goDown() {
+	private void goDown() {
 		this.turnLeft();
 		this.move();
 		this.turnLeft();
@@ -67,7 +74,7 @@ public class A3E2_BarRobot extends RobotVersion2 {
 	 * Counts the number of Things in the robot's backpack
 	 * @return the number of Things in the robot's backpack
 	 */
-	public int steps() {
+	private int steps() {
 		int num = this.countThingsInBackpack();
 		return num;
 	}

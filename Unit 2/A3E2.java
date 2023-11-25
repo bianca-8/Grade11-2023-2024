@@ -11,24 +11,33 @@ import java.util.Random;
 
 public class A3E2 {
 
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		Random r = new Random();
 		City oakville = new City(10,10);
 		A3E2_BarRobot robot = new A3E2_BarRobot(oakville, 1, 1, Direction.EAST);
 		oakville.showThingCounts(true);
 		
-		// put random # of dots in rows
-		// number of rows
-		for (int i = 1; i < r.nextInt(10)+1; i++) {
-			// number of dots at each row
-			for (int j = 1; j < r.nextInt(10)+1; j++) {
-				Thing dot = new Thing(oakville, i, 1);
-			}
-		}
+		drawThings(r, oakville);
 		
 		robot.create();
 
+	}
+	
+	/**
+	 * Puts the things on the map.
+	 * @param r - random number generator
+	 * @param oakville - city the robot is in.
+	 */
+	@SuppressWarnings("unused")
+	public static void drawThings(Random r, City oakville) {
+		// put random # of dots in rows
+		// number of rows
+		for (int i = 1; i < r.nextInt(10)+2; i++) {
+			// number of dots at each row
+			for (int j = 1; j < r.nextInt(10)+2; j++) {
+				Thing dot = new Thing(oakville, i, 1);
+			}
+		}
 	}
 
 }
