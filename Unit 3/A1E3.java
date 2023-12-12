@@ -13,12 +13,27 @@ public class A1E3 {
 	 * @param n - term number
 	 * @return the nth number
 	 */
-	public static int function(int n) {
-		return 1;
+	public static int factorial(int n) {
+		// base case
+		if (n==1) {
+			return 1;
+		}
+		// not base case
+		else {
+			return factorial(n-1)*n;
+		}
+
 	}
 	
 	public static void main(String[] args) {
+		int term = 10;
 		
+		System.out.print(term + "! = ");
+		// prints out full expansion of nth factorial
+		for (int i = term; i > 1; i--) {
+			System.out.print(i + " X ");
+		}
+		System.out.print("1 = " + factorial(term));
 
 	}
 

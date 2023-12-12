@@ -13,19 +13,19 @@ public class A1E1 {
 	 * @param n - term number
 	 * @return the nth number
 	 */
-	public static int function(int n) {
+	public static int triangle(int n) {
 		// first term - base case
 		if (n == 1) {
 			return 1;
 		}
 		// not the first term
 		else {
-			return function(n-1) + n;
+			return triangle(n-1) + n;
 		}
 	}
 	
 	public static void main(String[] args) {
-		System.out.print(function(5));
+		System.out.print(triangle(10));
 
 	}
 

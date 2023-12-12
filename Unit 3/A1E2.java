@@ -13,7 +13,7 @@ public class A1E2 {
 	 * @param n - term number
 	 * @return the nth number
 	 */
-	public static int function(int n) {
+	public static int fibb(int n) {
 		// base case
 		if (n == 1) {
 			return 1;
@@ -24,16 +24,16 @@ public class A1E2 {
 		}
 		// not base case
 		else {
-			return function(n - 1) + function(n - 2);
+			return fibb(n - 1) + fibb(n - 2);
 		}
 	}
 	
 	public static void main(String[] args) {
-		int term = 8;
+		int term = 10;
 		
 		// prints out all of the terms leading up to the term number
 		for (int i = 1; i <= term; i++) {
-			System.out.print(function(i) + " ");
+			System.out.print(fibb(i) + " ");
 		}
 
 	}
