@@ -2,7 +2,8 @@ package unit_2_Robots;
 
 import java.awt.*;
 
-public class A4E0_Minion extends A4E0_Character{
+@SuppressWarnings("serial")
+public class A4E0_Minion extends A4E0_Character {
 	
 	public A4E0_Minion(int x, int y, Graphics g) {
 		this.x = x;

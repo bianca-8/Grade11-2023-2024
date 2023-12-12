@@ -9,6 +9,7 @@ import becker.robots.Wall;
 
 public class A4E1 {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		// variables
 		Wall [] [] walls = new Wall[4][5];
@@ -16,9 +17,9 @@ public class A4E1 {
 
 		// drawing
 		City oakville = new City();
-		RobotVersion2 guy = new RobotVersion2(oakville, 1, 1, Direction.EAST);
+		A4E1_CleaningRobot guy = new A4E1_CleaningRobot(oakville, r.nextInt(4)+1, r.nextInt(5)+1, Direction.EAST);
 		for (int i = 0; i < 5; i++) {
-			Thing dot = new Thing(oakville, r.nextInt(4)+1, r.nextInt(5)+1);
+			Thing thing = new Thing(oakville, r.nextInt(4)+1, r.nextInt(5)+1);
 		}
 
 		// walls
@@ -35,43 +36,7 @@ public class A4E1 {
 			walls[i][4] = new Wall(oakville, i+1, 5, Direction.EAST);;
 		}
 
-		// robot collecting things
-		// guy at thing
-		guy.pickAllThings();
-		guy.turnRight();
-		for (int j = 0; j < 3; j++) {
-			guy.move();
-			guy.pickAllThings();
-		}
-
-		// move up and down columns
-		for (int i = 0; i < 2; i++) {
-			guy.turnLeft();
-			guy.move();
-			guy.pickAllThings();
-			guy.turnLeft();
-
-			for (int j = 0; j < 3; j++) {
-				guy.move();
-				guy.pickAllThings();
-			}
-			guy.turnRight();
-			guy.move();
-			guy.pickAllThings();
-			guy.turnRight();
-			for (int j = 0; j < 3; j++) {
-				guy.move();
-				guy.pickAllThings();
-			}
-		}
-
-		// go back to top left corner
-		guy.turnAround();
-		guy.move(3);
-		guy.turnLeft();
-		guy.move(4);
-
-		guy.putAllThings();
+		guy.cleanRoom();
 
 	}
 
