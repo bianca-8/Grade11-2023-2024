@@ -33,3 +33,12 @@ Language - Java
 - Intro to Objects
 - Inheritance
 - Stepwise Refinement
+- Overloading & Overriding
+
+**Unit 3: Recursion and Sorting**
+
+- Intro to Recursion
+- Intro to Sorting
+- Sorting and Records
+- Passing by value or reference
+- Sorting Algorithms (Insertion, Selection, Bubble Sort)
