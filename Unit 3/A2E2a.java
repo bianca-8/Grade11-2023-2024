@@ -13,8 +13,8 @@ public class A2E2a {
 
 	public static void main(String[] args) {
 		// variables
-		final int size = 119;
-		String file = "numbers2.txt";
+		final int size = 4; //119
+		String file = "numbers3.txt";
 		int [] numbers = new int[size];
 		int [] sortNum = new int[size];
 		int count = 0;
@@ -39,30 +39,39 @@ public class A2E2a {
 			System.out.println("File not Found");
 			System.exit(0);
 		}
-
+		
+		int subtract = 0;
+		
 		// goes through each number
 		for (int i = 0; i < size; i++) {
 			// checks with all other numbers
 			for (int j = 0; j < size; j++) {
 				// sorted array is empty
 				if (sortPlace == 0) {
+					//System.out.println(numbers[i] + " " + numbers[j] + " " + count + " " + size + " " + subtract);
 					// no numbers smaller at the end of the array and sorted array is empty
-					if (numbers[i] <= numbers[j] && count <= size-i-1) { // ALWIFJLWAIsize-i-1 was -k
+					if (numbers[i] <= numbers[j] && count < size-subtract) {
 						count += 1;
+					}
+					else {
+						break;
 					}
 				}
 				// sorted array is not empty
 				else {
+					System.out.println(numbers[i] + " " + numbers[j] + " " + count + " " + (size-subtract));
 					// no numbers smaller at the end of the array and sorted array is not empty and number is bigger than last number in sorted array
-					if (numbers[i] <= numbers[j] && count <= size-i-1 && numbers[i] > sortNum[sortPlace-1]) { // LAFWJFIJWALsize-i-1 was -k
+					if (numbers[i] <= numbers[j] && count <= size-subtract && numbers[i] > sortNum[sortPlace-1]) {
 						count += 1;
 					}
 				}
+				
 				// arrived at the end of the array without any smaller number
-				if (count == size-i) {// AWLIFJLIWFJsize-i-1 was -k
+				if (count == size-subtract) {
 					sortNum[sortPlace] = numbers[i];
 					sortPlace += 1;
-					break;
+					subtract += 1;
+					i = 0;
 				}
 			}
 			count = 0;
