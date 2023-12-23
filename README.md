@@ -3,7 +3,7 @@
 
 Language - Java
 
-**Unit 0: Java Basics**
+<h2>Unit 0: Java Basics</h2>
 
 - SystemOut JavaDoc
 - Simple Data Types
@@ -20,7 +20,7 @@ Language - Java
 
 
 
-**Unit 1: Intro to OOP**
+<h2>Unit 1: Intro to OOP</h2>
 
 - Methods
 - Graphics
@@ -28,14 +28,14 @@ Language - Java
 - Scrum Programming Activity
 
 
-**Unit 2: Robots and OOP**
+<h2>Unit 2: Robots and OOP</h2>
 
 - Intro to Objects
 - Inheritance
 - Stepwise Refinement
 - Overloading & Overriding
 
-**Unit 3: Recursion and Sorting**
+<h2>Unit 3: Recursion and Sorting</h2>
 
 - Intro to Recursion
 - Intro to Sorting
