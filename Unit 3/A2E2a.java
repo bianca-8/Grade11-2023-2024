@@ -12,7 +12,7 @@ import java.util.*;
 public class A2E2a {
 	public static void main(String[] args) {
 		// variables
-		final int size = 119; //119 try 1 1 2 1
+		final int size = 119;
 		String file = "numbers2.txt";
 		int [] numbers = new int[size];
 		int [] sortNum = new int[size];
