@@ -1,4 +1,4 @@
-package unit_3_recurSort;
+package unit_3_recur_sort;
 
 /**
  * Program that displays the first n terms of the Fibbonaci sequence.

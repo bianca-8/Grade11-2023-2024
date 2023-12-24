@@ -1,4 +1,4 @@
-package unit_3_recurSort;
+package unit_3_recur_sort;
 
 import java.io.*;
 import java.util.*;
@@ -10,15 +10,16 @@ import java.util.*;
  */
 
 public class A2E2a {
-
 	public static void main(String[] args) {
 		// variables
-		final int size = 4; //119
-		String file = "numbers3.txt";
+		final int size = 119; //119 try 1 1 2 1
+		String file = "numbers2.txt";
 		int [] numbers = new int[size];
 		int [] sortNum = new int[size];
-		int count = 0;
-		int sortPlace = 0;
+		int index = 0;
+		int place = -1;
+		boolean go = false;
+		int tempInd = 0;
 
 		// file
 		try {
@@ -40,41 +41,52 @@ public class A2E2a {
 			System.exit(0);
 		}
 		
-		int subtract = 0;
-		
-		// goes through each number
+		int num = numbers[0];
+
+		// go through array
 		for (int i = 0; i < size; i++) {
-			// checks with all other numbers
+			// compare each element in array with others
 			for (int j = 0; j < size; j++) {
-				// sorted array is empty
-				if (sortPlace == 0) {
-					//System.out.println(numbers[i] + " " + numbers[j] + " " + count + " " + size + " " + subtract);
-					// no numbers smaller at the end of the array and sorted array is empty
-					if (numbers[i] <= numbers[j] && count < size-subtract) {
-						count += 1;
+				// sorted list is empty
+				if (place <= 0) {
+					// number is smaller than first number
+					if (numbers[j] < num) {
+						num = numbers[j];
+						index = j;
 					}
-					else {
-						break;
+					// at the end of the array
+					if (j == size-1) {
+						place = 0;
 					}
 				}
-				// sorted array is not empty
+				// sorted list not empty
 				else {
-					System.out.println(numbers[i] + " " + numbers[j] + " " + count + " " + (size-subtract));
-					// no numbers smaller at the end of the array and sorted array is not empty and number is bigger than last number in sorted array
-					if (numbers[i] <= numbers[j] && count <= size-subtract && numbers[i] > sortNum[sortPlace-1]) {
-						count += 1;
+					// not found first number yet
+					if (go == false) {
+						// number is bigger than last number in sorted array
+						if (numbers[j] > numbers[index]) {
+							num = numbers[j];
+							go = true;
+							tempInd = j;
+						}
 					}
-				}
-				
-				// arrived at the end of the array without any smaller number
-				if (count == size-subtract) {
-					sortNum[sortPlace] = numbers[i];
-					sortPlace += 1;
-					subtract += 1;
-					i = 0;
+					// found first number
+					if (go) {
+						// number is bigger than last number in sorted array and smaller than previously stored number
+						if (numbers[j] > numbers[index] && numbers[j] < num) {
+							num = numbers[j];
+							tempInd = j;
+						}
+					}
+					// at the end of the array
+					if (j == size-1) {
+						index = tempInd;
+					}
 				}
 			}
-			count = 0;
+			sortNum[place] = num;
+			place += 1;
+			go = false;
 		}
 
 		// print out sorted list

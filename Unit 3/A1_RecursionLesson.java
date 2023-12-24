@@ -1,4 +1,4 @@
-package unit_3_recurSort;
+package unit_3_recur_sort;
 
 /**
  * Program that makes f(n) = f(n-1) + 2, t1 = 1

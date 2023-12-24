@@ -1,4 +1,4 @@
-package unit_3_recurSort;
+package unit_3_recur_sort;
 
 import javax.swing.JFrame;
 import java.awt.*;

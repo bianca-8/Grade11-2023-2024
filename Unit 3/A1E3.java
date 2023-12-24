@@ -1,4 +1,4 @@
-package unit_3_recurSort;
+package unit_3_recur_sort;
 
 /**
  * Program that writes the nth factorial with the full expansion.

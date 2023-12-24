@@ -1,4 +1,4 @@
-package unit_3_recurSort;
+package unit_3_recur_sort;
 
 /**
  * Program that checks if a word is a palindrome and returns the word reversed.
