@@ -4,22 +4,22 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Sorts numbers in a file by checking each with every number and storing it in a new list if it is smaller than each one but bigger than the last one of the list.
+ * Sorts numbers in a file  with double of numbers by checking each with every number and storing it in a new list if it is smaller than each one but bigger than the last one of the list.
  * @author Bianca
  * @version Dec 5, 2023
  */
 
 public class A2E2b {
-
 	public static void main(String[] args) {
 		// variables
-		final int size = 4; //119, 4
-		String file = "numbers3.txt";
+		final int size = 8000; //8000 try 1 1 2 1
+		String file = "numbers.txt";
 		int [] numbers = new int[size];
 		int [] sortNum = new int[size];
-		int count = 0;
-		int sortPlace = 0;
-		int times = 1;
+		int index = 0;
+		int place = -1;
+		boolean go = false;
+		int tempInd = 0;
 
 		// file
 		try {
@@ -40,47 +40,69 @@ public class A2E2b {
 			System.out.println("File not Found");
 			System.exit(0);
 		}
+		
+		int num = numbers[0];
 
-		// find smallest number
-		for (int k = 0; k < size; k++) {
-			// goes through each number
-			for (int i = 0; i < size; i++) {
-				// checks with all other numbers
-				for (int j = 0; j < size; j++) {
-					System.out.println(numbers[i] + " " + numbers[j] + " " + count);
-					// sorted array is empty
-					if (sortPlace == 0) {
-						// no numbers smaller at the end of the array and sorted array is empty
-						if (numbers[i] <= numbers[j] && count <= size-k-1) {
-							count += 1;
-						}
+		// go through array
+		for (int i = 0; i < size; i++) {
+			// compare each element in array with others
+			for (int j = 0; j < size; j++) {
+				// sorted list is empty
+				if (place <= 0) {
+					// number is smaller than first number
+					if (numbers[j] < num) {
+						num = numbers[j];
+						index = j;
 					}
-					// sorted array is not empty
-					else {
-						// no numbers smaller at the end of the array and sorted array is not empty and number is bigger than last number in sorted array
-						if (numbers[i] <= numbers[j] && count <= size-k-1 && numbers[i] > sortNum[sortPlace-1]) {
-							count += 1;
-
-						}
-						if (numbers[i] <= numbers[j] && count <= size-k-1 && numbers[i] == sortNum[sortPlace-1]) {
-							times += 1;
-							count += 1;
-						}
+					// at the end of the array
+					if (j == size-1) {
+						place = 0;
 					}
-					// arrived at the end of the array without any smaller number
-					if (count == size-k) {
-						System.out.println("hi" + sortPlace + " " + numbers[i] + " " + times);
-						for (int l = 0; l < times; l++) {
-							sortNum[sortPlace] = numbers[i];
-							sortPlace += 1;
-						}
-						break;
-					}
-					times = 1;
 				}
-				count = 0;
-
+				// sorted list not empty
+				else {
+					// not found first number yet
+					if (go == false) {
+						// number is bigger than last number in sorted array
+						if (numbers[j] > numbers[index]) {
+							num = numbers[j];
+							go = true;
+							tempInd = j;
+						}
+					}
+					// found first number
+					if (go) {
+						// number is bigger than last number in sorted array and smaller than previously stored number
+						if (numbers[j] > numbers[index] && numbers[j] < num) {
+							num = numbers[j];
+							tempInd = j;
+						}
+					}
+					// at the end of the array
+					if (j == size-1) {
+						index = tempInd;
+					}
+				}
 			}
+			// place exists in array
+			if (place < size) {
+				sortNum[place] = num;
+			}
+			
+			// compare the 
+			for (int j = 0; j < size; j++) {
+				// number is a repeat and is not at the index
+				if (numbers[j] == num && j != index) {
+					place += 1;
+					// place exists in array 
+					if (place < size) {
+						sortNum[place] = numbers[j];
+					}
+					
+				}
+			}
+			place += 1;
+			go = false;
 		}
 
 		// print out sorted list
