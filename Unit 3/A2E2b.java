@@ -12,7 +12,7 @@ import java.util.*;
 public class A2E2b {
 	public static void main(String[] args) {
 		// variables
-		final int size = 8000; //8000 try 1 1 2 1
+		final int size = 8000;
 		String file = "numbers.txt";
 		int [] numbers = new int[size];
 		int [] sortNum = new int[size];
