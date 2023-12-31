@@ -24,13 +24,26 @@ public class A3E1_Account {
 		this.name = clientName;
 		this.balance = initialBal;
 	}
-	
+
 	/**
 	 * Overload Account constructor to take in a Scanner
-	 * @param fileInput - 
+	 * @param fileInput - scanner for file
 	 */
 	public A3E1_Account(Scanner fileInput) {
+		final int clients = 11;
+		int [] id = new int[clients];
+		double [] initBals = new double[clients];
+		String [] names = new String[clients];
+		int count = 0;
 		
+		// has more lines
+		while(fileInput.hasNextLine()) {
+			id[count] = fileInput.nextInt();
+			initBals[count] = fileInput.nextDouble();
+			names[count] = fileInput.nextLine().strip();
+
+			count += 1;
+		}
 	}
 
 	/**
@@ -61,7 +74,6 @@ public class A3E1_Account {
 		else {
 			System.out.print("You do not have this much money to withdraw.\n");
 		}
-
 	}
 
 	/**
@@ -79,7 +91,7 @@ public class A3E1_Account {
 	public String getName() {
 		return this.name;
 	}
-	
+
 	/**
 	 * Method that returns the account number of the user.
 	 * @return account number of the user.
@@ -87,6 +99,5 @@ public class A3E1_Account {
 	public int getAccountNum() {
 		return this.accountNum;
 	}
-
 
 }
