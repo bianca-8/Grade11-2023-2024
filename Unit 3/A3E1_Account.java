@@ -18,6 +18,8 @@ public class A3E1_Account {
 	/**
 	 * Method that gets the account number of the user.
 	 * @param acctNum - account number of the user.
+	 * @param clientName - name of the user.
+	 * @param initialBal - initial balance of the account.
 	 */
 	public A3E1_Account(int acctNum, String clientName, double initialBal) {
 		this.accountNum = acctNum;
@@ -30,19 +32,14 @@ public class A3E1_Account {
 	 * @param fileInput - scanner for file
 	 */
 	public A3E1_Account(Scanner fileInput) {
-		final int clients = 11;
-		int [] id = new int[clients];
-		double [] initBals = new double[clients];
-		String [] names = new String[clients];
-		int count = 0;
-		
 		// has more lines
-		while(fileInput.hasNextLine()) {
-			id[count] = fileInput.nextInt();
-			initBals[count] = fileInput.nextDouble();
-			names[count] = fileInput.nextLine().strip();
-
-			count += 1;
+		while (fileInput.hasNextLine()) {
+			int num = fileInput.nextInt();
+			// account in file matches with account number given by user
+			if (num == this.accountNum) {
+				this.balance = fileInput.nextDouble();
+				this.name = fileInput.nextLine().strip();
+			}
 		}
 	}
 
@@ -54,6 +51,7 @@ public class A3E1_Account {
 		// not depositing negative
 		if (amount >= 0) {
 			this.balance += amount;
+			System.out.format("Your new balance is: $%.2f.\n", this.balance);
 		}
 		// depositing positive
 		else {
@@ -69,6 +67,7 @@ public class A3E1_Account {
 		// amount to withdraw is greater than money in account
 		if (this.balance > amount && amount >= 0) {
 			this.balance -= amount;
+			System.out.format("Your new balance is: $%.2f.\n", this.balance);
 		}
 		// amount to withdraw is within money in account
 		else {
