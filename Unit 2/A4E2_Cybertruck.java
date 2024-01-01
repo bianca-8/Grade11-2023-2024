@@ -1,4 +1,4 @@
-package unit_2_Robots;
+package unit_2_robots;
 
 /**
  * Program that makes a cybertruck which makes a sound when told to drive.
@@ -8,11 +8,17 @@ package unit_2_Robots;
 
 public class A4E2_Cybertruck extends A4E2_Vehicle {
 	
+	/**
+	 * Initialize vehicle
+	 */
 	public A4E2_Cybertruck() {
-		System.out.print("Vroom");
+		super("Cybertruck", 405309.50);
 	}
 	
+	/**
+	 * Override drive method
+	 */
 	public void drive() {
-		
+		System.out.print("Vroom");
 	}
 }
