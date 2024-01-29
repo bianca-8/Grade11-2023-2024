@@ -8,7 +8,7 @@ import java.util.*;
  * @version Dec 7, 2023
  */
 
-public class A3E1_Account {
+public class A3E1_AccountOld {
 
 	// Variables
 	private double balance;
@@ -21,7 +21,7 @@ public class A3E1_Account {
 	 * @param clientName - name of the user.
 	 * @param initialBal - initial balance of the account.
 	 */
-	public A3E1_Account(int acctNum, String clientName, double initialBal) {
+	public A3E1_AccountOld(int acctNum, String clientName, double initialBal) {
 		this.accountNum = acctNum;
 		this.name = clientName;
 		this.balance = initialBal;
@@ -31,10 +31,16 @@ public class A3E1_Account {
 	 * Overload Account constructor to take in a Scanner
 	 * @param fileInput - scanner for file
 	 */
-	public A3E1_Account(Scanner fileInput) {
-		this.accountNum = fileInput.nextInt();
-		this.balance = fileInput.nextDouble();
-		this.name = fileInput.nextLine().strip();
+	public A3E1_AccountOld(Scanner fileInput) {
+		// has more lines
+		while (fileInput.hasNextLine()) {
+			int num = fileInput.nextInt();
+			// account in file matches with account number given by user
+			if (num == this.accountNum) {
+				this.balance = fileInput.nextDouble();
+				this.name = fileInput.nextLine().strip();
+			}
+		}
 	}
 
 	/**
@@ -49,7 +55,7 @@ public class A3E1_Account {
 		}
 		// depositing positive
 		else {
-			System.out.print("Invalid amount.\n");
+			System.out.print("Invalid amount\n");
 		}
 	}
 

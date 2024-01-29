@@ -16,7 +16,6 @@ public class A2E3 {
 		final int size = 8000;
 		int [] numbers = new int[size];
 		String file = "numbers.txt";
-		int num;
 
 		// file
 		try {
@@ -45,9 +44,7 @@ public class A2E3 {
 				
 				// second number is smaller than first number
 				if (numbers[i] < numbers[i-1]) {
-					num = numbers[i];
-					numbers[i] = numbers[i-1];
-					numbers[i-1] = num;
+					swap(numbers, i);
 				}
 			}
 		}
@@ -56,5 +53,17 @@ public class A2E3 {
 		for (int i = 0; i < size; i++) {
 			System.out.println(numbers[i] + " ");
 		}
+	}
+	
+	/**
+	 * Swaps the numbers
+	 * pre: second number is smaller than first
+	 * @param numbers - array of numbers
+	 * @param i - index
+	 */
+	private static void swap(int [] numbers, int i) {
+		int num = numbers[i];
+		numbers[i] = numbers[i-1];
+		numbers[i-1] = num;
 	}
 }

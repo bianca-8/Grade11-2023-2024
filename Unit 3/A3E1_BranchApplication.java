@@ -11,7 +11,7 @@ import java.io.*;
 
 public class A3E1_BranchApplication {
 
-	A3E1_Account [] account;
+	A3E1_AccountOld [] account;
 
 	public static void main(String[] args) {
 		// variables
@@ -20,17 +20,10 @@ public class A3E1_BranchApplication {
 		String choice2;
 		double amount;
 		int acctNum;
-		String name = "";
-		double initBal = 0;
+		int count;
 		boolean go = true;
-		final int clients = 11;
-		int [] id = new int[clients];
-		double [] initBals = new double[clients];
-		String [] names = new String[clients];
-		int [] id2 = new int[clients];
-		double [] initBals2 = new double[clients];
-		String [] names2 = new String[clients];
-		int count = 0;
+		final int CLIENTS = 11;
+		A3E1_Account [] account = new A3E1_Account[CLIENTS];
 		Scanner input = new Scanner(System.in);
 
 		// menu
@@ -38,38 +31,24 @@ public class A3E1_BranchApplication {
 
 		System.out.print("What is your account number: ");
 		acctNum = input.nextInt();
+		count = acctNum - 1;
 
 		// input
 		Scanner scanner = null;
 		try {
 			scanner = new Scanner(new File(file));
 			
-			// has more lines
-			while(scanner.hasNextLine() && count < clients) {
-				id[count] = scanner.nextInt();
-				initBals[count] = scanner.nextDouble();
-				names[count] = scanner.nextLine().strip();
-				id2[count] = id[count];
-				initBals2[count] = initBals[count];
-				names2[count] = names[count];
-
-				// account in file matches with account number given by user
-				if (id[count] == acctNum) {
-					initBal = initBals[count];
-					name = names[count];
-				}
-
-				count += 1;
+			// add objects to account list
+			for (int i = 0; i < CLIENTS; i++) {
+				A3E1_Account acct = new A3E1_Account(scanner);
+				account[i] = acct;
 			}
-			//A3E1_Account acct = new A3E1_Account(scanner);
 		} 
 		catch (FileNotFoundException e) {
 			System.out.print("File not found");
 			System.exit(0);
 		}
 
-		A3E1_Account account = new A3E1_Account(acctNum, name, initBal);
-		
 		// not exiting
 		while (go) {
 			// choice 1
@@ -99,21 +78,29 @@ public class A3E1_BranchApplication {
 					choice2 = input.next();
 					input.nextLine();
 
+					// find place in list of id of client
+					for (int i = 0; i < CLIENTS; i++) {
+						if (account[i].getAccountNum() == acctNum) {
+							count = i;
+							break;
+						}
+					}
+
 					// choose 1 - view balance
 					if (choice2.equals("1")) {
-						System.out.println(account.getBalance());
+						System.out.format("$%.2f\n", account[count].getBalance());
 					}
 					// choose 2 - deposit
 					else if (choice2.equals("2")) {
 						System.out.print("\nHow much would you like to deposit: ");
 						amount = input.nextDouble();
-						account.deposit(amount);
+						account[count].deposit(amount);
 					}
 					// choose 3 - withdraw
 					else if (choice2.equals("3")) {
 						System.out.print("\nHow much would you like to withdraw: ");
 						amount = input.nextDouble();
-						account.withdraw(amount);
+						account[count].withdraw(amount);
 					}
 					// choose 4 - back to menu
 					else if (choice2.equals("4")) {
@@ -124,58 +111,28 @@ public class A3E1_BranchApplication {
 						System.out.print("Bye! See you again soon!");
 						System.exit(0);
 					}
+					else {
+						System.out.print("\nPlease enter a valid choice.\n");
+					}
 				}
 				while (choice2 != "4");
 			}
 
 			// choose 2 - sort by amount using bubble sort
 			else if (choice1.equals("2")) {
-				bubbleSort(initBals);
-				
-				System.out.println("ID:\t\tAmount:\t\tNames:");
-				// go through sorted array
-				for (int i = 0; i < initBals.length; i++) {
-					// compare with original array
-					for (int j = 0; j < initBals2.length; j++) {
-						// found index of where the sorted number is in the original array
-						if (initBals[i] == initBals2[j]) {
-							System.out.println(id2[j] + "\t\t" +  initBals[i] + "\t\t" + names2[j]);
-						}
-					}
-				}
+				bubbleSort(account);
+				printAccounts(account);
 			}
 
 			// choose 3 - sort by ID using insertion sort
 			else if (choice1.equals("3")) {
-				insertSort(id);
-				
-				System.out.println("ID:\t\tAmount:\t\tNames:");
-				// go through sorted array
-				for (int i = 0; i < id.length; i++) {
-					// compare with original array
-					for (int j = 0; j < id.length; j++) {
-						// found index of where the sorted number is in the original array
-						if (id[i] == id[j]) {
-							System.out.println(id[i] + "\t\t" +  initBals2[j] + "\t\t" + names2[j]);
-						}
-					}
-				}
+				insertSort(account);
+				printAccounts(account);
 			}
 			// choose 4 - sort by names using selection sort
 			else if (choice1.equals("4")) {
-				selectSort(names);
-				
-				System.out.println("ID:\t\tAmount:\t\tNames:");
-				// go through sorted array
-				for (int i = 0; i < names.length; i++) {
-					// compare with original array
-					for (int j = 0; j < names.length; j++) {
-						// found index of where the sorted number is in the original array
-						if (names[i].equals(names2[j])) {
-							System.out.println(id2[j] + "\t\t" +  initBals2[j] + "\t\t" + names[i]);
-						}
-					}
-				}
+				selectSort(account);
+				printAccounts(account);
 			}
 			// choose 5 - exit
 			else if (choice1.equals("5")) {
@@ -183,107 +140,100 @@ public class A3E1_BranchApplication {
 				go = false;
 				System.exit(0);
 			}
+			else {
+				System.out.print("\nPlease enter a valid choice.\n");
+			}
 		}
 		input.close();	
 	}
 
 	/**
-	 * Performs a bubble sort on an array of doubles
-	 * @param numbers - array of numbers to sort
+	 * Prints out the accounts.
+	 * @param account - bank account array
+	 */
+	private static void printAccounts(A3E1_Account [] account) {
+		System.out.println("ID:\t\tAmount:\t\tNames:");
+		// go through sorted array
+		for (int i = 0; i < account.length; i++) {
+			System.out.format("%d\t\t$%.2f\t\t%s\n", account[i].getAccountNum(), account[i].getBalance(), account[i].getName());
+		}
+	}
+	
+	/**
+	 * Performs a bubble sort on an array of objects
+	 * @param list - array of objects to sort
 	 * @return sorted array
 	 */
-	private static double [] bubbleSort(double [] numbers) {
-		int size = numbers.length;
+	private static A3E1_Account [] bubbleSort(A3E1_Account [] list) {
+		int size = list.length;
 
 		// go through the array size times
 		for (int k = 0; k < size; k++) {
 			// go through the whole array
 			for (int i = 1; i < size; i++) {
-				// second number is smaller than first number
-				if (numbers[i] < numbers[i-1]) {
-					bubbleSwap(numbers, i);
+				// second number is smaller than first value
+				if (list[i].getBalance() < list[i-1].getBalance()) {
+					A3E1_Account temp = list[i];
+					list[i] = list[i-1];
+					list[i-1] = temp;
 				}
 			}
 		}
-		return numbers;
-	}
-	
-	/**
-	 * Swaps the numbers in a array of doubles
-	 * pre: second number is smaller than first
-	 * @param numbers - array of numbers
-	 * @param i - index of first number
-	 * @param j - index of second number
-	 */
-	private static void bubbleSwap(double [] numbers, int i) {
-		double num = numbers[i];
-		numbers[i] = numbers[i-1];
-		numbers[i-1] = num;
+		return list;
 	}
 
 	/**
-	 * Performs a insertion sort on an array of integers
-	 * @param number - array of numbers to sort
+	 * Performs a insertion sort on an array of objects
+	 * @param list - array of objects to sort
 	 * @return sorted array
 	 */
-	private static int [] insertSort(int [] numbers) {
-		int temp;
+	private static A3E1_Account [] insertSort(A3E1_Account [] list) {
+		A3E1_Account temp;
 		int previ;
 
 		// go through array
-		for (int i = 1; i < numbers.length; i++) {
-			temp = numbers[i];
+		for (int i = 1; i < list.length; i++) {
+			temp = list[i];
 			previ = i - 1;
 
 			// 
-			while (numbers[i] > temp && previ > 0) {
-				numbers[previ + 1] = numbers[previ];
+			while (list[i].getAccountNum() > temp.getAccountNum() && previ > 0) {
+				list[previ + 1] = list[previ];
 				previ -= 1;
 			}	
 
 			// previous number is bigger, need to swap spots
-			if (numbers[previ] > temp) {
-				numbers[previ + 1] = numbers[previ];
-				numbers[previ] = temp;
+			if (list[previ].getAccountNum() > temp.getAccountNum()) {
+				list[previ + 1] = list[previ];
+				list[previ] = temp;
 			}
 			// number at i is bigger
 			else {
-				numbers[previ + 1] = temp;
+				list[previ + 1] = temp;
 			}
 		}
-		return numbers;
+		return list;
 	}
 
 	/**
-	 * Performs a selection sort on an array of strings
-	 * @param names - array of names to sort
+	 * Performs a selection sort on an array of objects
+	 * @param list - array of objects to sort
 	 * @return sorted array
 	 */
-	private static String [] selectSort(String [] names) {
+	private static A3E1_Account [] selectSort(A3E1_Account [] list) {
 		// go through names
-		for (int i = 0; i < names.length; i++) {
+		for (int i = 0; i < list.length; i++) {
 			// compare with all other names
-			for (int j = i; j < names.length; j++) {
+			for (int j = i; j < list.length; j++) {
 				// name at j is alphabetically before name at i, swap the names
-				if (names[j].compareToIgnoreCase(names[i]) < 0) {
-					selectSwap(names, i, j);
+				if (list[j].getName().compareToIgnoreCase(list[i].getName()) < 0) {
+					A3E1_Account temp = list[i];
+					list[i] = list[j];
+					list[j] = temp;
 				}
 			}
 		}
-		return names;
-	}
-
-	/**
-	 * Swaps the numbers in an array of Strings
-	 * pre: second number is smaller than first
-	 * @param numbers - array of numbers
-	 * @param i - index of first number
-	 * @param j - index of second number
-	 */
-	private static void selectSwap(String [] numbers, int i, int j) {
-		String num = numbers[i];
-		numbers[i] = numbers[j];
-		numbers[j] = num;
+		return list;
 	}
 
 }
