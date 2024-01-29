@@ -27,7 +27,7 @@ public class Bian_TestFighterRobot8 extends FighterRobot {
 	 * @param health - amount of health the robot has
 	 */
 	public Bian_TestFighterRobot8(City c, int a, int s, Direction d, int id, int health) {
-		super(c, a, s, d, id, 5, 4, 6); // City c, int a, int s, Direction d, int id, int attack, int defence, int numMoves
+		super(c, a, s, d, id, 5, 4, 1); // City c, int a, int s, Direction d, int id, int attack, int defence, int numMoves
 		this.health = health;
 		this.setLabel();
 	}
@@ -626,7 +626,8 @@ public class Bian_TestFighterRobot8 extends FighterRobot {
 	 * Performs a selection sort on an array.
 	 * @param list - array of values to sort
 	 * @return sorted array
-	 */private BianOppData [] selectSort(BianOppData [] list) {
+	 */
+	private BianOppData [] selectSort(BianOppData [] list) {
 		 // go through list
 		 for (int i = 0; i < list.length; i++) {
 			 // compare with all other values

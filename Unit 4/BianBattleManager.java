@@ -8,7 +8,7 @@ public class BianBattleManager {
 	// Public constants for the width and height of the arena as well as the number of players and move energy cost.  Can be used in other classes by saying BattleManager.WIDTH for example.
 	public static final int WIDTH = 20;
 	public static final int HEIGHT = 12;
-	public static final int NUM_PLAYERS = 2;
+	public static final int NUM_PLAYERS = 10;
 	public static final int MOVES_ENERGY_COST = 5;
 
 	// Constants used in the game to govern the max amount of health, energy, etc. 
@@ -165,18 +165,19 @@ public class BianBattleManager {
 		player[3] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 3, MAX_HEALTH);
 		 */
 
-		/*
+		
 		// Test Case 4: Random Battle
 		player[0] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 0, MAX_HEALTH);
-		player[1] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 1, MAX_HEALTH);
+		player[1] = new Bian_TestFighterRobot8V1(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 1, MAX_HEALTH);
 		player[2] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 2, MAX_HEALTH);
-		player[3] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 3, MAX_HEALTH);
-		player[4] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 3, MAX_HEALTH);
-		player[5] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 3, MAX_HEALTH);
-		player[6] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 3, MAX_HEALTH);
-		player[7] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 3, MAX_HEALTH);
-		player[8] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 3, MAX_HEALTH);
-		 */
+		player[3] = new Bian_TestFighterRobot8V1(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 3, MAX_HEALTH);
+		player[4] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 4, MAX_HEALTH);
+		player[5] = new Bian_TestFighterRobot8V1(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 5, MAX_HEALTH);
+		player[6] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 6, MAX_HEALTH);
+		player[7] = new Bian_TestFighterRobot8V1(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 7, MAX_HEALTH);
+		player[8] = new Bian_TestFighterRobot8(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 8, MAX_HEALTH);
+		player[9] = new Bian_TestFighterRobot8V1(arena,generator.nextInt(HEIGHT),generator.nextInt(WIDTH),Direction.NORTH, 9, MAX_HEALTH);
+		 
 		
 		/*
 		// Test Case 5: 11 Robots

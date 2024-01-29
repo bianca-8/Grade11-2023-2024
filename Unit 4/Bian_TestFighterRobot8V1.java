@@ -27,7 +27,7 @@ public class Bian_TestFighterRobot8V1 extends FighterRobot {
 	 * @param health - amount of health the robot has
 	 */
 	public Bian_TestFighterRobot8V1(City c, int a, int s, Direction d, int id, int health) {
-		super(c, a, s, d, id, 1, 6, 3); // City c, int a, int s, Direction d, int id, int attack, int defence, int numMoves
+		super(c, a, s, d, id, 5, 4, 6); // City c, int a, int s, Direction d, int id, int attack, int defence, int numMoves -- 163
 		this.health = health;
 		this.setLabel();
 	}
